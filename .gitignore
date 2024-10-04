@@ -1,0 +1,54 @@
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+target/
+bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### Maven ###
+log/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+### Gradle ###
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+
+### Logs ###
+logs/
+*.log
+
+### Eclipse ###
+*.launch
+.metadata
+*.bak
+*.swp
+*~.nib
+local.properties
+.recommenders
+node_modules/
+
+### OS-specific ###
+# Windows
+Thumbs.db
+ehthumbs.db
+*.stackdump
+.DS_Store
+*.swp
+*.swo
