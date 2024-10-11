@@ -1,0 +1,4 @@
+2024-10-11 19:02:26.300472-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into funcionario(nome,email,data_nascimento,salario) values ('Liliane','lili@gmail.com','1974-11-10',3200)\000d\000a[*]insert into funcionario(nome,email,data_nascimento,salario) values ('Liliam','lii@gmail.com','2000-01-22',6500)"; SQL statement:
+insert into funcionario(nome,email,data_nascimento,salario) values ('Liliane','lili@gmail.com','1974-11-10',3200)
+insert into funcionario(nome,email,data_nascimento,salario) values ('Liliam','lii@gmail.com','2000-01-22',6500) [42000-224]
