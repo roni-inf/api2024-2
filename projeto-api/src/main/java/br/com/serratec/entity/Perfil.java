@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,33 +11,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Usuario {
+public class Perfil {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Schema(description = "Identificador único do usuário")
 	private Long id;
-	@Schema(description = "Nome do usuário")
 	private String nome;
-	@Schema(description = "Email do usuário")
-	private String email;
-	@Schema(description = "Senha deve ter no mínimo 8 caracteres")
-	private String senha;
-	
-	@OneToMany(mappedBy = "id.usuario")
+
+	@OneToMany(mappedBy = "id.perfil")
 	private Set<UsuarioPerfil> usuarioPerfis = new HashSet<>();
 
-	@Override
-	public String toString() {
-		return "Id:" + id + "\n" + "Nome:" + nome + "\n" + "Email:" + email;
-	}
-
-	
-	
 	public Set<UsuarioPerfil> getUsuarioPerfis() {
 		return usuarioPerfis;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -56,22 +41,6 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -85,9 +54,8 @@ public class Usuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Perfil other = (Perfil) obj;
 		return Objects.equals(id, other.id);
 	}
 
-	
 }

@@ -53,12 +53,11 @@ public class UsuarioController {
 			@ApiResponse(responseCode = "403", description = "Não há permissão para acessar o recurso"),
 			@ApiResponse(responseCode = "404", description = "Recurso não encontrado"),
 			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") })
+
 	@PostMapping
-	public ResponseEntity<Object> inserir(@RequestBody Usuario usuario) {
-		UsuarioRequestDTO dto = service.inserir(usuario);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId())
-				.toUri();
-		return ResponseEntity.created(uri).body(dto);
+	public ResponseEntity<Object> inserir(@RequestBody UsuarioRequestDTO dto) {
+		UsuarioResponseDTO dtoResponse = service.inserir(dto);
+		return ResponseEntity.created(null).body(dtoResponse);
 	}
 
 }
