@@ -5,10 +5,13 @@ import java.util.Objects;
 import java.util.Set;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -23,22 +26,49 @@ public class Usuario {
 	private String email;
 	@Schema(description = "Senha deve ter no mínimo 8 caracteres")
 	private String senha;
-	
+
 	@OneToMany(mappedBy = "id.usuario")
 	private Set<UsuarioPerfil> usuarioPerfis = new HashSet<>();
+
+	@ManyToOne
+	@JoinColumn(name = "id_endereco")
+	private Endereco endereco;
+
+	private String numero;
+	private String complemento;
 
 	@Override
 	public String toString() {
 		return "Id:" + id + "\n" + "Nome:" + nome + "\n" + "Email:" + email;
 	}
 
-	
-	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	public Set<UsuarioPerfil> getUsuarioPerfis() {
 		return usuarioPerfis;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -89,5 +119,4 @@ public class Usuario {
 		return Objects.equals(id, other.id);
 	}
 
-	
 }

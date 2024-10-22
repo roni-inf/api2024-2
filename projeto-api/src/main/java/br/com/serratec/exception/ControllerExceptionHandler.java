@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -50,4 +51,29 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
 	}
 
+	@ExceptionHandler(HttpClientErrorException.class)
+	protected ResponseEntity<Object> handleClientErrorException(HttpClientErrorException ex) {
+		List<String> erros = new ArrayList<>();
+		erros.add(ex.getMessage());
+		ErroResposta erroResposta = new ErroResposta(HttpStatus.NOT_FOUND.value(),
+				"Cep inexistente",
+				LocalDateTime.now(), erros);
+
+		return ResponseEntity.unprocessableEntity().body(erroResposta);
+
+	}
+	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {
+
+		List<String> erros = new ArrayList<>();
+		erros.add(ex.getMessage());
+
+		ErroResposta erroResposta = new ErroResposta(HttpStatus.NOT_FOUND.value(), "Recurso não encontrado",
+				LocalDateTime.now(), erros);
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erroResposta);
+	}
+	
+	
 }

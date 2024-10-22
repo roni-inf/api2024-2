@@ -5,6 +5,12 @@ import br.com.serratec.entity.Usuario;
 public class UsuarioResponseDTO {
 	private String nome;
 	private String email;
+//	private String url;
+
+	
+	public UsuarioResponseDTO() {
+	}
+	
 
 	public UsuarioResponseDTO(Usuario usuario) {
 		this.nome = usuario.getNome();
@@ -27,5 +33,12 @@ public class UsuarioResponseDTO {
 		this.email = email;
 	}
 
-	
+//	public String getUrl() {
+//		return url;
+//	}
+//
+//	public void setUrl(String url) {
+//		this.url = url;
+//	}
+
 }
